@@ -1,5 +1,5 @@
 # Pokedex Application
-Pokemon application 
+Pokemon application used to check details of each Pokemon listed
 
 ## Tech Stack
 - Java Script
