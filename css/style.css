@@ -1,0 +1,12 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgba(225, 224, 224, 0.951);
+    text-align: center;
+}
+
+h1 {
+    letter-spacing: 12px;
+}

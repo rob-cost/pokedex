@@ -20,17 +20,15 @@ let pokemonList=[
     }
 ];
 
+let html = '';
+
 
 for (ii = 0; ii < pokemonList.length; ii++) {               // for loop for select each obkect in the array
-
-    if (pokemonList[ii].height > 0.6) {                     // condition to add a text only to a object with soecific value
-                        
+    if (pokemonList[ii].height > 0.6) {                     // condition to add a text only to a object with soecific value                   
         document.write(pokemonList[ii].name + " (height: " + pokemonList[ii].height + ") " + " - Wow, that's big" +  "<br><br>" );  // print out 
     }
-
     else {
-        
         document.write(pokemonList[ii].name + " (height: " + pokemonList[ii].height + ") " + "<br><br>" );  // print out
-    }
-    
+    } 
 }
+
