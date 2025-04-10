@@ -10,25 +10,28 @@ let pokemonList=[
     {
      name:'Charmander',
      height:0.6,
-     type:'fire'
+     type:['fire']
     },
     
     {
      name:'Squirtle',
      height:0.5,
-     type:'water'
+     type:['water']
     }
 ];
 
-let html = '';
 
-
-for (ii = 0; ii < pokemonList.length; ii++) {               // for loop for select each obkect in the array
-    if (pokemonList[ii].height > 0.6) {                     // condition to add a text only to a object with soecific value                   
-        document.write(pokemonList[ii].name + " (height: " + pokemonList[ii].height + ") " + " - Wow, that's big" +  "<br><br>" );  // print out 
+    function printArrayDetails(list) {                                  // declaring a function
+        for (ii = 0; ii < list.length; ii++) {               // for loop for select each obkect in the array
+            if (list[ii].height > 0.6) {                     // condition to add a text only to a object with soecific value                   
+                document.write(` <p> ${list[ii].name} (height: ${list[ii].height}) - Wow, that's big </p>`);      // print out result
+            }
+            else {
+                document.write(` <p> ${list[ii].name} (height: ${list[ii].height}) </p>` );  // print out result
+             } 
+        }
     }
-    else {
-        document.write(pokemonList[ii].name + " (height: " + pokemonList[ii].height + ") " + "<br><br>" );  // print out
-    } 
-}
 
+
+
+printArrayDetails(pokemonList);
