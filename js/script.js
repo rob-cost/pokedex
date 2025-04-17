@@ -30,7 +30,7 @@ function add(pokemon){
         && Object.keys(pokemon).includes('name')
         && pokemon['name']
         && Object.keys(pokemon).includes('type')
-        && pokemon['name']
+        && pokemon['type']
         && Object.keys(pokemon).includes('height')
         && pokemon['height']
     ) {
@@ -59,11 +59,11 @@ function addListItem(pokemon){
     let listPokemon = document.querySelector('.pokemon-list');          // assign a variable to an unordered list
     let listItem = document.createElement('li');                        // creates a list element and assign it to a var
     let button = document.createElement('button');                      // creates a button element and assign it to a var
-    button.innerText = pokemon.name;                                    // assign the inut text to the name of the pokemon
-    button.classList.add('button-class');                               // stylish the button
+    button.innerText = pokemon.name;                                    // assign the button input text to the name of the pokemon
+    button.classList.add('button-class');                               // style of the button
     listItem.appendChild(button);                                       // append childs to parents
     listPokemon.appendChild(listItem);
-    button.addEventListener('click', function (){                       // shows in the console the details of a pokemon everytime it gets clicked
+    button.addEventListener('click', function (){                       // shows in the console the details of the pokemon clicked
         showDetails(pokemon);
     } );
 };
@@ -86,8 +86,23 @@ pokemonRepository.add({
     type: ['electric']
 });
 
+// adding a search function
 
-// For.each loop that iterate in the array and print each item details
+function pokemonSearch (name) {
+    let pokeList = pokemonRepository.getAll();
+    let nameLower = name.toLowerCase();
+    let match = pokeList.filter(p => p.name.toLowerCase().includes(nameLower));
+    if (match.length>0) {
+        match.forEach(pokemonRepository.showDetails);
+    }
+    else {
+        console.log(`There is no match with that element`);
+    }
+};
+
+
+
+// iterates inside the repository and add a list element for each object
 
 pokemonRepository.getAll().forEach(function (pokemon) { 
     pokemonRepository.addListItem(pokemon);
