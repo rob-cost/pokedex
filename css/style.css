@@ -15,6 +15,11 @@ h1, p {
     color: white;
 }
 
+#loading-message {
+    color: white;
+      }
+
+
 .button-class {
     display: inline-block;
     text-decoration: none;
