@@ -66,7 +66,10 @@ function loadList() {
     }).then(function (details) {
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
-      item.types = details.types;
+      item.types = [];
+      for (i=0; i<details.types.length; i++) {
+        item.types.push(details.types[i].type['name']);
+      }
     }).catch(function (e) {
       console.error(e);
     });
@@ -84,8 +87,6 @@ function showDetails(pokemon) {
 return {
     add: add,
     getAll: getAll,
-    showLoadingMessage: showLoadingMessage,
-    hideLoadingMessage: hideLoadingMessage,
     addListItem: addListItem,
     loadList: loadList,
     loadDetails: loadDetails,
