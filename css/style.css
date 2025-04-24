@@ -38,7 +38,7 @@ p {
 }
 
 .pokedex-panel {
-  background-color: #2a2a2a; /* darker screen-like background */
+  background-color: #2a2a2a;
   border: 1px solid var(--secondary-color);
   border-radius: 15px;
   padding: 10px;
@@ -83,7 +83,11 @@ p {
 }
 
 .button-class:hover {
-    transform: scale(1.05);  
+    transform: scale(1.03);
+    background-color: var(--links-color); 
+    color: var(--button-color);            
+    border: 1px inset var(--text-color); 
+    box-shadow: 0 0 2px #279EFF, inset 0 0 2px #FFD700;  
 }
 
 #modal-container {
@@ -123,7 +127,7 @@ p {
     box-shadow: 0 0 20px rgba(91, 44, 111, 0.6);
     padding: 15px;
     width: 100%;
-    max-width: 700px;
+    max-width: 600px;
     text-align: center;
     animation: fadeIn 0.3s ease-out;
   }
@@ -132,6 +136,7 @@ p {
   .modal h1 {
     color:  var(--button-color);
     font-family: var(--secondary-text);
+    font-size: 30px;
     text-align: center;
     margin: 10px auto;
   }
@@ -139,6 +144,7 @@ p {
   .modal p {
     letter-spacing: 5px;
     color: var(--text-color);
+    font-size: 18px;
     text-align: left;
     margin: 30px auto;
   }
@@ -153,9 +159,11 @@ p {
 
 
 
-  @media (max-width: 600px) {
-    .pokemon-list {
-      grid-template-columns: repeat(2, 1fr);
+  @media (max-width: 480px) {
+    h1, p {
+        letter-spacing: 0;
+        text-align: center;
+        font-size: large;
     }
   }
 
