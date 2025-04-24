@@ -28,7 +28,7 @@ let pokemonRepository = (function () {
     let listPokemon = document.querySelector('.pokemon-list');          // assign a variable to an unordered list
     let listItem = document.createElement('li');                        // creates a list element and assign it to a var
     let button = document.createElement('button');                      // creates a button element and assign it to a var
-    button.innerText = pokemon.name;                                    // assign the button input text to the name of the pokemon
+    button.innerText = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
     button.classList.add('button-class');                               // style of the button
     listItem.appendChild(button);                                       // append childs to parents
     listPokemon.appendChild(listItem);
@@ -63,7 +63,7 @@ let pokemonRepository = (function () {
     return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
-      item.imageUrl = details.sprites.front_default;
+      item.imageUrl = details.sprites.other["official-artwork"].front_default;
       item.height = details.height;
       item.abilities = [];
       for (i = 0; i < details.abilities.length; i++) {
@@ -154,7 +154,7 @@ let pokemonRepository = (function () {
 
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-      let title = pokemon.name;
+      let title = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);;
       let text = `Height: ${pokemon.height}\n Type: ${pokemon.types}\n Ability: ${pokemon.abilities}`;
       let image = pokemon.imageUrl;
       showModal(title, text, image);
