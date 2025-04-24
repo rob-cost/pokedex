@@ -65,9 +65,19 @@ let pokemonRepository = (function () {
     }).then(function (details) {
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
+      item.abilities = [];
+      for (i = 0; i < details.abilities.length; i++) {
+        item.abilities.push(details.abilities[i].ability['name']);
+      }
+      if (details.abilities.length > 1){
+        item.abilities = item.abilities.join(', ');
+      }
       item.types = [];
       for (i = 0; i < details.types.length; i++) {
         item.types.push(details.types[i].type['name']);
+      }
+      if (details.types.length > 1){
+        item.types = item.types.join(', ');
       }
     }).catch(function (e) {
       console.error(e);
@@ -121,7 +131,7 @@ let pokemonRepository = (function () {
       modalContainer.classList.remove('is-visible');
     };
 
-    // removes modal if clikc outside container
+    // removes modal if click outside container
     modalContainer.addEventListener('click', (e) => {
       let target = e.target;
       if (target === modalContainer) {
@@ -145,7 +155,7 @@ let pokemonRepository = (function () {
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
       let title = pokemon.name;
-      let text = `Height: ${pokemon.height}\n Type: ${pokemon.types}`;
+      let text = `Height: ${pokemon.height}\n Type: ${pokemon.types}\n Ability: ${pokemon.abilities}`;
       let image = pokemon.imageUrl;
       showModal(title, text, image);
     });
