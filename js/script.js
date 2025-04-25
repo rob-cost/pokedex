@@ -32,10 +32,37 @@ let pokemonRepository = (function () {
     button.classList.add('button-class');                               // style of the button
     listItem.appendChild(button);                                       // append childs to parents
     listPokemon.appendChild(listItem);
+    button.setAttribute('tabindex', '0');
     button.addEventListener('click', function () {                       // shows in the console the details of the pokemon clicked
       showDetails(pokemon);
     });
   };
+
+ 
+  // NAVIGATION WITH KEYBOARD
+  
+  let currentFocusIndex = 0;
+
+  document.addEventListener('keydown', function (e) {
+    const buttons = document.querySelectorAll('.pokemon-list .button-class');
+    if (!buttons.length) return;
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      currentFocusIndex = (currentFocusIndex + 1) % buttons.length;
+      buttons[currentFocusIndex].focus();
+    }
+
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      currentFocusIndex = (currentFocusIndex - 1 + buttons.length) % buttons.length;
+      buttons[currentFocusIndex].focus();
+    }
+
+    if (e.key === 'Enter') {
+      buttons[currentFocusIndex].click();
+    }
+  });
 
   // LOAD POKEMONS from API
 
