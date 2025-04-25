@@ -93,7 +93,7 @@ let pokemonRepository = (function () {
     // Clear all existing modal content
     modalContainer.innerHTML = '';
 
-    // create a variable for div content
+    // create a modal window
     let modal = document.createElement('div');
     modal.classList.add('modal');
 
@@ -103,24 +103,39 @@ let pokemonRepository = (function () {
     closeButtonElement.innerText = 'Close';
     closeButtonElement.addEventListener('click', hideModal);
 
-    // create title element
-    let titleElement = document.createElement('h1');
-    titleElement.innerText = title;
+    // create a container for image and text
+    let modalContentWrapper = document.createElement('div');
+    modalContentWrapper.classList.add('modal-content-wrapper');
 
-    // create paragraph element
-    let contentElement = document.createElement('p');
+    // create title text element
+    let titleElement = document.createElement('div');
+    titleElement.innerText = title;
+    titleElement.classList.add('modal-title');
+
+    // create paragraph text element
+    let contentElement = document.createElement('div');
     contentElement.innerText = text;
+    contentElement.classList.add('modal-content');
 
     // create an image element
     let imageElement = document.createElement('img');
     imageElement.src = imageUrl;
     imageElement.alt = `${title} image`;
+    imageElement.classList.add('modal-img');
+
+    // group the title and content together in one wrapper
+    let textWrapper = document.createElement('div');
+    textWrapper.classList.add('modal-text-wrapper');
+    textWrapper.appendChild(titleElement);
+    textWrapper.appendChild(contentElement);
+
+    // wrap image and text in a container
+    modalContentWrapper.appendChild(imageElement);
+    modalContentWrapper.appendChild(textWrapper);
 
     // append childs to parents
     modal.appendChild(closeButtonElement);
-    modal.appendChild(imageElement);
-    modal.appendChild(titleElement);
-    modal.appendChild(contentElement);
+    modal.appendChild(modalContentWrapper);
     modalContainer.appendChild(modal);
 
     // makes container visible
@@ -155,7 +170,7 @@ let pokemonRepository = (function () {
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
       let title = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);;
-      let text = `Height: ${pokemon.height}\n Type: ${pokemon.types}\n Ability: ${pokemon.abilities}`;
+      let text = `Height: ${pokemon.height}\n\n Type: ${pokemon.types}\n\n Ability: ${pokemon.abilities}`;
       let image = pokemon.imageUrl;
       showModal(title, text, image);
     });
