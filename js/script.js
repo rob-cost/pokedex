@@ -38,9 +38,8 @@ let pokemonRepository = (function () {
     });
   };
 
- 
   // NAVIGATION WITH KEYBOARD
-  
+
   let currentFocusIndex = 0;
 
   document.addEventListener('keydown', function (e) {
@@ -99,6 +98,11 @@ let pokemonRepository = (function () {
       if (details.abilities.length > 1){
         item.abilities = item.abilities.join(', ');
       }
+     /* let capitalizedAbilities = item.abilities.map(item => {
+        return item.charAt(0).toUpperCase() + item.slice(1);
+      })
+      */  
+      
       item.types = [];
       for (i = 0; i < details.types.length; i++) {
         item.types.push(details.types[i].type['name']);
