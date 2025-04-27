@@ -149,7 +149,6 @@ h1 {
 .modal {
     margin: auto;
     display: inline-block;
-    float: left;
     box-sizing: border-box;
     background-color: var(--modal-background);
     border: 2px solid var(--links-color);
