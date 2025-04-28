@@ -6,3 +6,6 @@ The Pokedex App is a small app that allows you to look up informations about a s
 - HTML
 - CSS
 - Git
+
+### Link
+https://rob-cost.github.io/pokedex/
