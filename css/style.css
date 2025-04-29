@@ -25,7 +25,12 @@ body {
     font-family: var(--primary-text);
 }
 
-header .row img {
+header nav.navbar {
+    background-color: var(--secondary-color) !important;
+    border: solid 3px var(--text-button-color);
+}
+
+header .container-fluid img {
     max-width: 40px;
     max-height: 40px;
 }
