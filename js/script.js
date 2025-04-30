@@ -97,8 +97,8 @@ let pokemonRepository = (function () {
     let imageElement = $('<img class = "img-fluid">');
     imageElement.attr("alt", 'Pokemon-image');
     imageElement.attr("src", item.imageUrl);
-    let heightElement = $('<p>' + 'Height : ' + item.height + '</p>');
-    let abilitiesElement = $('<p>' + 'Ability : ' + item.abilities + '</p>');
+    let heightElement = $('<div><b>Height:</b> ' + item.height + ' ft</div>');
+    let abilitiesElement = $('<p><b>Ability:</b> ' + item.abilities + '</p>');
     let typesElement = $('<div class = "modal-types"></div>');
 
     item.types.forEach(function (type){
