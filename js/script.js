@@ -122,14 +122,13 @@ let pokemonRepository = (function () {
     });
   };
 
-
   return {
     add: add,
     getAll: getAll,
     addListItem: addListItem,
     loadList: loadList,
     loadDetails: loadDetails,
-    showDetails: showDetails
+    showDetails: showDetails,
   };
 
 })();
@@ -137,17 +136,27 @@ let pokemonRepository = (function () {
 
 // SEARCH FUNCTION
 
-function pokemonSearch(name) {
+$('#search-input').on('input', function(e){
+  e.preventDefault();
+
+  let searchName = $('#search-input').val().trim().toLowerCase();
   let pokeList = pokemonRepository.getAll();
-  let nameLower = name.toLowerCase();
-  let match = pokeList.filter(p => p.name.toLowerCase().includes(nameLower));
-  if (match.length > 0) {
-    match.forEach(pokemonRepository.showDetails);
-  }
-  else {
-    console.log(`There is no match with that element`);
-  }
-};
+  let groupList = $('.list-group');
+
+  groupList.empty();
+
+  let filterList = pokeList.filter(function (pokemon){
+    return pokemon.name.toLowerCase().includes(searchName);
+  })
+
+  if (filterList.length > 0) {
+    filterList.forEach(function(pokemon){
+      pokemonRepository.addListItem(pokemon);
+    });
+    } else {
+      groupList.append($('<li class="list-group-item btn"> No Pokemon found </li>'));
+    }
+  });
 
 // iterates inside the repository and add a list element for each object
 
