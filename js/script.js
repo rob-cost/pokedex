@@ -67,7 +67,7 @@ let pokemonRepository = (function () {
     return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
-      item.imageUrl = details.sprites.other["official-artwork"].front_default;
+      item.imageUrl = details.sprites.other['official-artwork'].front_default;
       item.height = details.height;
       item.abilities = [];
       for (i = 0; i < details.abilities.length; i++) {
@@ -92,15 +92,15 @@ let pokemonRepository = (function () {
   // SHOW MODAL
 
   function showModal(item) {
-    let modalBody = $(".modal-body");
-    let modalTitle = $(".modal-title");
+    let modalBody = $('.modal-body');
+    let modalTitle = $('.modal-title');
     
     modalTitle.empty();
     modalBody.empty();
 
     let nameElement = $('<h3>' + item.name + '</h3>');
     let imageElement = $('<img class = "img-fluid">');
-    imageElement.attr("alt", "Responsive image");
+    imageElement.attr("alt", 'Pokemon-image');
     imageElement.attr("src", item.imageUrl);
     let heightElement = $('<p>' + 'Height : ' + item.height + '</p>');
     let abilitiesElement = $('<p>' + 'Ability : ' + item.abilities + '</p>');
