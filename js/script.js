@@ -2,7 +2,7 @@
 
 let pokemonRepository = (function () {
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?offset=50&limit=50#';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?offset=50&limit=80#';
 
   // ADD POKEMON
 
@@ -111,9 +111,10 @@ let pokemonRepository = (function () {
 
     modalTitle.append(nameElement);
     modalBody.append(imageElement);
+    modalBody.append(typesElement);
     modalBody.append(heightElement);
     modalBody.append(abilitiesElement);
-    modalBody.append(typesElement);
+    
 
   }
 
