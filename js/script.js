@@ -154,7 +154,7 @@ $('#search-input').on('input', function(e){
       pokemonRepository.addListItem(pokemon);
     });
     } else {
-      groupList.append($('<li class="list-group-item btn"> No Pokemon found </li>'));
+      groupList.append($('<li class="list-group-item text-center h3 text-dark"> No Pokemon Found </li>'));
     }
   });
 
