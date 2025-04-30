@@ -76,14 +76,9 @@ let pokemonRepository = (function () {
       if (details.abilities.length > 1){
         item.abilities = item.abilities.join(', ');
       }
-      
-      item.types = [];
-      for (i = 0; i < details.types.length; i++) {
-        item.types.push(details.types[i].type['name']);
-      }
-      if (details.types.length > 1){
-        item.types = item.types.join(', ');
-      }
+      item.types = details.types.map(function(typeInfo){
+        return typeInfo.type.name;
+      })
     }).catch(function (e) {
       console.error(e);
     });
@@ -104,7 +99,15 @@ let pokemonRepository = (function () {
     imageElement.attr("src", item.imageUrl);
     let heightElement = $('<p>' + 'Height : ' + item.height + '</p>');
     let abilitiesElement = $('<p>' + 'Ability : ' + item.abilities + '</p>');
-    let typesElement = $('<p>' + 'Types : ' + item.types + '</p>');
+    let typesElement = $('<div class = "modal-types"></div>');
+
+    item.types.forEach(function (type){
+      let typeBadge = $('<div></div>')
+        .addClass(`type-badge type-${type}`)
+        .text(type);
+    
+      typesElement.append(typeBadge);
+    });
 
     modalTitle.append(nameElement);
     modalBody.append(imageElement);
