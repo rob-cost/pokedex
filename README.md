@@ -3,9 +3,10 @@ The Pokedex App is a small app that allows you to look up informations about a s
 
 ## Tech Stack
 - Java Script
-- HTML
+- HTML5
 - CSS
 - Git
+- Poke API
 
 ### Link
 https://rob-cost.github.io/pokedex/
