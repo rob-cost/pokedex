@@ -2,7 +2,8 @@
 
 let pokemonRepository = (function () {
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?offset=50&limit=80#';
+  let prevURL = null;
+  let nextURL = null;
 
   // ADD POKEMON
 
@@ -43,10 +44,15 @@ let pokemonRepository = (function () {
 
   // FETCH POKEMONS from API
 
-  function loadList() {
+  function loadList(apiUrl) {
+    console.log(apiUrl)
     return fetch(apiUrl).then(function (response) {
       return response.json();
     }).then(function (json) {
+      // Clean up before updating new records.
+      clearList();
+      prevURL = json.previous;
+      nextURL = json.next;
       json.results.forEach(function (item) {
         let pokemon = {
           name: item.name,
@@ -58,6 +64,14 @@ let pokemonRepository = (function () {
       console.error(e);
     })
   };
+
+  // Clean existing Array and UI
+  function clearList() {
+    pokemonList.length = 0;
+
+    let listPokemon = $('.list-group');   
+    listPokemon.empty();
+  }
 
 
   // FETCH DETAILS of Pokemon from API
@@ -126,6 +140,14 @@ let pokemonRepository = (function () {
     });
   };
 
+  function getPrevURL() {
+    return prevURL;
+  }
+
+  function getNextURL() {
+    return nextURL;
+  }
+
   return {
     add: add,
     getAll: getAll,
@@ -133,6 +155,8 @@ let pokemonRepository = (function () {
     loadList: loadList,
     loadDetails: loadDetails,
     showDetails: showDetails,
+    getNextURL,
+    getPrevURL
   };
 
 })();
@@ -164,9 +188,34 @@ $('#search-input').on('input', function(e){
 
 // iterates inside the repository and add a list element for each object
 
-pokemonRepository.loadList().then(function () {
-  pokemonRepository.getAll().forEach(function (pokemon) {
-    pokemonRepository.addListItem(pokemon);
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
+
+function loadPokemons(APIURL = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=30') {
+  pokemonRepository.loadList(APIURL).then(function () {
+    pokemonRepository.getAll().forEach(function (pokemon) {
+      pokemonRepository.addListItem(pokemon);
+    });
   });
+}
+
+
+// Prev Button Click
+prevBtn.addEventListener("click", () => {
+  if (!pokemonRepository.getPrevURL()) return;
+
+  loadPokemons(pokemonRepository.getPrevURL());
+});
+
+// Next Button Click
+nextBtn.addEventListener("click", () => {
+  if (!pokemonRepository.getNextURL()) return;
+
+  loadPokemons(pokemonRepository.getNextURL());
+});
+
+// Page Load
+$( document ).ready(function() {
+  loadPokemons();
 });
 
