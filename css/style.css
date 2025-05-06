@@ -47,7 +47,7 @@ h1 {
     background-color: var(--secondary-color);
 }
 
-.col-lg-6 {
+.list-cnt {
     background-color: #333333;
     padding: 10px;
 }
@@ -60,6 +60,37 @@ h1 {
     max-height: 100%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     overflow: scroll;
+}
+
+.btn:focus,
+.btn-secondary:focus {
+  box-shadow: 0 0 0 0.2px rgba(57, 56, 55, 0.5);
+    outline: none;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--text-button-color);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px 26px;
+  font-size: 1.10rem;
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-color);
+  transform: scale(1.03);
+}
+
+.btn-secondary:active {
+  background-color: var(--secondary-color);
 }
 
 .list-group-item {
